@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/GeneralKaos666/nerdfont-changer/internal/paths"
+	"github.com/GeneralKaos666/font-changer/internal/paths"
 )
 
 func useTermuxHome(t *testing.T) string {

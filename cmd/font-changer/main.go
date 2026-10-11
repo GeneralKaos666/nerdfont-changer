@@ -1,4 +1,4 @@
-// Command nerdfont-changer changes the Termux terminal font, either through
+// Command font-changer changes the Termux terminal font, either through
 // an interactive Bubble Tea picker or non-interactive --list / --apply
 // flags for scripting.
 package main
@@ -14,10 +14,10 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 
-	"github.com/GeneralKaos666/nerdfont-changer/internal/apply"
-	"github.com/GeneralKaos666/nerdfont-changer/internal/paths"
-	"github.com/GeneralKaos666/nerdfont-changer/internal/scan"
-	"github.com/GeneralKaos666/nerdfont-changer/internal/tui"
+	"github.com/GeneralKaos666/font-changer/internal/apply"
+	"github.com/GeneralKaos666/font-changer/internal/paths"
+	"github.com/GeneralKaos666/font-changer/internal/scan"
+	"github.com/GeneralKaos666/font-changer/internal/tui"
 )
 
 // version is the build version, overridden at release time with
@@ -128,7 +128,7 @@ func main() {
 
 func realMain(argv []string) int {
 	ensureBuiltinSeed()
-	fs := flag.NewFlagSet("nerdfont-changer", flag.ContinueOnError)
+	fs := flag.NewFlagSet("font-changer", flag.ContinueOnError)
 	list := fs.Bool("list", false, "Print library font names and exit.")
 	applyName := fs.String("apply", "", "Install library font NAME into --slot and exit.")
 	slot := fs.String("slot", "regular", "Font slot for --apply (default: regular).")
@@ -142,7 +142,7 @@ func realMain(argv []string) int {
 		return 2
 	}
 	if *versionFlag {
-		fmt.Printf("nerdfont-changer %s\n", version)
+		fmt.Printf("font-changer %s\n", version)
 		return 0
 	}
 	if _, err := paths.FontSlotPath(*slot); err != nil {
@@ -168,7 +168,9 @@ func realMain(argv []string) int {
 		return runApply(entries, *applyName, *slot)
 	}
 	asciiOn := *asciiFlag
-	if v := os.Getenv("NERDFONT_CHANGER_ASCII"); v != "" && v != "0" {
+	// FONT_CHANGER_ASCII is current; NERDFONT_CHANGER_ASCII is the
+	// pre-rename name, still honored so existing setups keep working.
+	if v := envTruthy("FONT_CHANGER_ASCII", "NERDFONT_CHANGER_ASCII"); v {
 		asciiOn = true
 	}
 	tui.SetASCII(asciiOn)
@@ -181,6 +183,18 @@ func realMain(argv []string) int {
 		return 1
 	}
 	return 0
+}
+
+// envTruthy reports whether any of the named environment variables is set
+// to a value other than "" or "0". Names are checked in order, so callers
+// can pass the current variable first and deprecated aliases after.
+func envTruthy(names ...string) bool {
+	for _, name := range names {
+		if v := os.Getenv(name); v != "" && v != "0" {
+			return true
+		}
+	}
+	return false
 }
 
 // isTTY reports whether f is attached to a terminal (a character device).

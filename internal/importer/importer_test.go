@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/GeneralKaos666/nerdfont-changer/internal/importer"
-	"github.com/GeneralKaos666/nerdfont-changer/internal/paths"
+	"github.com/GeneralKaos666/font-changer/internal/importer"
+	"github.com/GeneralKaos666/font-changer/internal/paths"
 )
 
 const fixture = "../apply/testdata/a.ttf"

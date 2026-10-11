@@ -5,7 +5,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 
-	"github.com/GeneralKaos666/nerdfont-changer/internal/downloader"
+	"github.com/GeneralKaos666/font-changer/internal/downloader"
 )
 
 type downloadStartMsg struct{ name string }

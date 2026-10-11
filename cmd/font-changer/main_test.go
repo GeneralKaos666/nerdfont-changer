@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/GeneralKaos666/nerdfont-changer/internal/scan"
+	"github.com/GeneralKaos666/font-changer/internal/scan"
 )
 
 func entries(names ...string) []scan.FontEntry {
@@ -141,7 +141,7 @@ func TestRealMain_VersionPrints(t *testing.T) {
 	if code != 0 {
 		t.Fatalf("realMain(--version) = %d, want 0", code)
 	}
-	want := "nerdfont-changer " + version
+	want := "font-changer " + version
 	if got := strings.TrimSpace(string(out)); got != want {
 		t.Fatalf("--version output = %q, want %q", got, want)
 	}

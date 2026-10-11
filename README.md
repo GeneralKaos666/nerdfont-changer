@@ -1,53 +1,57 @@
-# nerdfont-changer
+# font-changer
 
-Change your Termux terminal font with a friendly fullscreen picker.
-Browse your fonts, try each one live, and keep the one you love — with
-automatic backups, so you can always go back.
+**Font changer for Termux with Nerd Fonts.**
 
-The picker dresses itself in your Termux colors and shows your real
-shell prompt in every candidate font. What you see is what you get.
+Give your terminal a fresh look with a friendly fullscreen picker. Browse
+the fonts you already have, preview each one live against your real shell
+prompt, and keep the one you love — with automatic backups, so you can
+always go back.
+
+The picker styles itself with your Termux colors and renders your actual
+prompt in every candidate font, so what you see is what you get.
 
 ## Install
 
 You need [Go](https://go.dev/dl/) 1.26 or newer, then run:
 
 ```bash
-go install github.com/GeneralKaos666/nerdfont-changer/cmd/nerdfont-changer@latest
+go install github.com/GeneralKaos666/font-changer/cmd/font-changer@latest
 ```
 
-This puts a `nerdfont-changer` command on your system. If your shell
+This puts a `font-changer` command on your system. If your shell
 can't find it afterwards, add Go's install folder to your `PATH`, or
 install straight into Termux's own folder instead:
 
 ```bash
-GOBIN=$PREFIX/bin go install github.com/GeneralKaos666/nerdfont-changer/cmd/nerdfont-changer@latest
+GOBIN=$PREFIX/bin go install github.com/GeneralKaos666/font-changer/cmd/font-changer@latest
 ```
 
 No Go toolchain? Grab the prebuilt arm64 binary from the
-[latest release](https://github.com/GeneralKaos666/nerdfont-changer/releases/latest):
+[latest release](https://github.com/GeneralKaos666/font-changer/releases/latest):
 
 ```bash
-curl -L -o nerdfont-changer \
-  https://github.com/GeneralKaos666/nerdfont-changer/releases/latest/download/nerdfont-changer-android-arm64
-install -Dm755 nerdfont-changer "$PREFIX/bin/nerdfont-changer"
+curl -L -o font-changer \
+  https://github.com/GeneralKaos666/font-changer/releases/latest/download/font-changer-android-arm64
+install -Dm755 font-changer "$PREFIX/bin/font-changer"
 ```
 
 Want to poke around safely first? Point the tool at a throwaway folder
 so your real setup stays untouched:
 
 ```bash
-TERMUX_HOME=$PREFIX/tmp/fc-go-demo nerdfont-changer --list
+TERMUX_HOME=$PREFIX/tmp/fc-go-demo font-changer --list
 ```
 
-### Upgrading from `termux-fonts`
+### Upgrading from older names
 
-Up to v0.1.0 this tool installed a `termux-fonts` command from a
-`font-changer-termux` module path. Both are renamed to match this repo.
-If you have the old command installed, remove it and reinstall:
+This tool has been renamed over time. Up to v0.1.0 it installed a
+`termux-fonts` command from a `font-changer-termux` module path, and it
+was later called `nerdfont-changer`. The current name is `font-changer`.
+If you have an old command installed, remove it and reinstall:
 
 ```bash
 rm -f "$(command -v termux-fonts)"     # usually in $PREFIX/bin or ~/go/bin
-GOBIN=$PREFIX/bin go install github.com/GeneralKaos666/nerdfont-changer/cmd/nerdfont-changer@latest
+GOBIN=$PREFIX/bin go install github.com/GeneralKaos666/font-changer/cmd/font-changer@latest
 ```
 
 ## Usage
@@ -55,7 +59,7 @@ GOBIN=$PREFIX/bin go install github.com/GeneralKaos666/nerdfont-changer/cmd/nerd
 Open the picker:
 
 ```bash
-nerdfont-changer
+font-changer
 ```
 
 The top half previews the highlighted font: a sample alphabet, symbol
@@ -70,8 +74,8 @@ the whole screen; a window smaller than 44 columns by 8 rows gets a
 Prefer the command line? These work too (great for scripts):
 
 ```bash
-nerdfont-changer --list
-nerdfont-changer --apply "JetBrainsMono.ttf" --slot regular
+font-changer --list
+font-changer --apply "JetBrainsMono.ttf" --slot regular
 ```
 
 Termux has four font slots: `regular`, `bold`, `italic`, and
@@ -98,7 +102,7 @@ The footer always shows the keys that work on the screen you're on, so
 you don't have to remember the full list.
 
 If your terminal renders box-drawing characters as garbage, start the
-picker with `nerdfont-changer --ascii` (or set `NERDFONT_CHANGER_ASCII=1`)
+picker with `font-changer --ascii` (or set `FONT_CHANGER_ASCII=1`)
 for plain-ASCII borders and markers.
 
 Just looking around changes nothing — a font is only installed when you

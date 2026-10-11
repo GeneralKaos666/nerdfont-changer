@@ -12,9 +12,9 @@ import (
 	"github.com/charmbracelet/x/ansi"
 	"github.com/mattn/go-runewidth"
 
-	"github.com/GeneralKaos666/nerdfont-changer/internal/paths"
-	"github.com/GeneralKaos666/nerdfont-changer/internal/scan"
-	"github.com/GeneralKaos666/nerdfont-changer/internal/theme"
+	"github.com/GeneralKaos666/font-changer/internal/paths"
+	"github.com/GeneralKaos666/font-changer/internal/scan"
+	"github.com/GeneralKaos666/font-changer/internal/theme"
 )
 
 // Layout thresholds, in terminal cells.
@@ -520,7 +520,7 @@ func (m Model) View() string {
 		return tooSmallView(w, h)
 	}
 
-	title := spread(" "+gradientTitle("nerdfont-changer"), slotChip(m.slot)+" ", w)
+	title := spread(" "+gradientTitle("font-changer"), slotChip(m.slot)+" ", w)
 
 	body := m.libraryLayout()
 	if m.overlay == overlayDownload {

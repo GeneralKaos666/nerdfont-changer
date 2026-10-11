@@ -25,11 +25,11 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 
-	"github.com/GeneralKaos666/nerdfont-changer/internal/apply"
-	"github.com/GeneralKaos666/nerdfont-changer/internal/downloader"
-	"github.com/GeneralKaos666/nerdfont-changer/internal/paths"
-	"github.com/GeneralKaos666/nerdfont-changer/internal/scan"
-	"github.com/GeneralKaos666/nerdfont-changer/internal/theme"
+	"github.com/GeneralKaos666/font-changer/internal/apply"
+	"github.com/GeneralKaos666/font-changer/internal/downloader"
+	"github.com/GeneralKaos666/font-changer/internal/paths"
+	"github.com/GeneralKaos666/font-changer/internal/scan"
+	"github.com/GeneralKaos666/font-changer/internal/theme"
 )
 
 // FilterMsg sets the list filter to its value and narrows visible items.
